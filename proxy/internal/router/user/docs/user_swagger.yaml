@@ -1,0 +1,62 @@
+basePath: /api
+definitions:
+  models.User:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample API for address searching and geocoding using Dadata
+    API.
+  termsOfService: http://localhost:8080/user/swagger/index.html
+  title: GEO API
+  version: "2.0"
+paths:
+  /user/list:
+    post:
+      consumes:
+      - application/json
+      operationId: List
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get list user
+          schema:
+            $ref: '#/definitions/models.User'
+        "500":
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: get list user
+      tags:
+      - user
+  /user/profile:
+    post:
+      consumes:
+      - application/json
+      operationId: profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get profile
+          schema:
+            $ref: '#/definitions/models.User'
+        "500":
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Profile
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

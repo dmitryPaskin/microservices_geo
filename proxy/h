@@ -1,0 +1,69 @@
+
+// @Summary Search for an address
+// @ID search_address
+// @Tags geo
+// @Accept json
+// @Produce json
+// @Param request body models.SearchRequest true "Search request"
+// @Success 200 {object} models.AddressSearch "get data"
+// @Failure 400
+// @Failure 500
+// @Security ApiKeyAuth
+// @Router /address/search [post]
+
+
+// @Summary Search for an GEO
+// @ID GEO_address
+// @Tags geo
+// @Accept json
+// @Produce json
+// @Param request body models.GeocodeRequest true "Geocode request"
+// @Success 200 {object} models.AddressGeo "get data"
+// @Failure 400
+// @Failure 500
+// @Security ApiKeyAuth
+// @Router /address/geocode [post]
+
+
+// @Summary Profile
+// @ID profile
+// @Tags user
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.User "get profile"
+// @Failure 500
+// @Security ApiKeyAuth
+// @Router /user/profile [post]
+
+
+// @Summary get list user
+// @ID list
+// @Tags user
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.User "get list user"
+// @Failure 500
+// @Security ApiKeyAuth
+// @Router /user/list [post]
+
+// @Summary Register a user
+// @ID SingUp
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param input body models.User true "User"
+// @Success 201 "User registered successfully"
+// @Failure 400 "Invalid request format"
+// @Failure 500 "Response writer error on write"
+// @Router /auth/register [post]
+
+// @Summary SingIn a user
+// @ID SingIn
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param input body models.User true "User"
+// @Success 200 "JWT token"
+// @Failure 400 "Invalid request format"
+// @Failure 500 "Response writer error on write"
+// @Router /auth/login [post]

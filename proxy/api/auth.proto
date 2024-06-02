@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "GeoAPI/user;user";
+
+import "google/protobuf/empty.proto";
+
+service AuthService{
+  rpc SingUpHandler(UserAuth)returns(Status);
+  rpc SingInHandler(UserAuth)returns(TokenAuth);
+  rpc CheckToken(google.protobuf.Empty)returns(google.protobuf.Empty);
+}
+
+message UserAuth{
+  string Login = 1;
+  string Password = 2;
+}
+
+message TokenAuth{
+  string Token = 1;
+}
+
+message Status{
+  bool isSuccessful = 1;
+}

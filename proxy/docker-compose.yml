@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    networks:
+      - mylocal
+    ports:
+      - "8080:8080"
+
+networks:
+  mylocal:
+    external: true
+    driver: bridge

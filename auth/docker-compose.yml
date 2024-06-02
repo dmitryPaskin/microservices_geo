@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    networks:
+      - mylocal
+
+networks:
+  mylocal:
+    external: true
+    driver: bridge

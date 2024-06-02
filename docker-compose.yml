@@ -1,0 +1,59 @@
+services:
+  geo:
+    extends:
+      service: app
+      file: geo/docker-compose.yml
+    networks:
+      - mylocal
+
+  db1:
+    extends:
+      service: db1
+      file: geo/docker-compose.yml
+    networks:
+      - mylocal
+
+  redis:
+    extends:
+      service: redis
+      file: geo/docker-compose.yml
+    networks:
+      - mylocal
+
+  auth:
+    extends:
+      service: app
+      file: auth/docker-compose.yml
+    networks:
+      - mylocal
+
+  user:
+    extends:
+      service: app
+      file: user/docker-compose.yml
+    networks:
+      - mylocal
+
+  db2:
+    extends:
+      service: db2
+      file: user/docker-compose.yml
+    networks:
+      - mylocal
+
+  proxy:
+    extends:
+      service: app
+      file: proxy/docker-compose.yml
+    networks:
+      - mylocal
+
+
+volumes:
+  postgres_data1:
+  postgres_data2:
+networks:
+  mylocal:
+    external: true
+    driver: bridge
+

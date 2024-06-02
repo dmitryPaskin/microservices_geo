@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package geo;
+
+option go_package = "GeoAPI/geo;geo";
+
+import "google/protobuf/empty.proto";
+
+service GeoService{
+  rpc SearchService(SearchRequest)returns(AddressResponse);
+  rpc GeocodeService(GeocodeRequest)returns(AddressResponse);
+}
+
+message AddressResponse{
+  bytes address = 1;
+}
+
+message SearchRequest{
+  string Query = 1;
+}
+
+message GeocodeRequest{
+  string Lat = 1;
+  string Lon = 2;
+}

@@ -1,0 +1,36 @@
+services:
+  db2:
+    image: mirror.gcr.io/postgres:latest
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - ${DB_PORT}
+    networks:
+      - mylocal
+    volumes:
+      - postgres_data2:/var/lib/postgresql/data
+      - ./init2.sql:/docker-entrypoint-initdb.d/init2.sql
+    restart: always
+
+  app:
+    build: .
+    depends_on:
+      - db2
+    networks:
+      - mylocal
+    environment:
+      DB_HOST: db2
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+
+
+volumes:
+  postgres_data2:
+networks:
+  mylocal:
+    external: true
+    driver: bridge

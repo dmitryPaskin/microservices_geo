@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "GeoAPI/user;user";
+
+import "google/protobuf/empty.proto";
+
+service UserService{
+  rpc GetToken (User) returns(Token);
+  rpc SaveUser (User)returns(google.protobuf.Empty);
+  rpc GetListUsers(google.protobuf.Empty)returns(Users);
+  rpc CheckUser(User)returns(Check);
+}
+
+message User{
+  string Login = 1;
+  string Password = 2;
+}
+
+message Check{
+  bool isExist = 1;
+}
+
+message Users{
+  repeated User Users = 1;
+}
+
+message Token{
+  string Token = 1;
+}
