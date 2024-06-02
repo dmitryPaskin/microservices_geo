@@ -41,12 +41,23 @@ services:
     networks:
       - mylocal
 
-  proxy:
-    extends:
-      service: app
-      file: proxy/docker-compose.yml
-    networks:
-      - mylocal
+#  proxy:
+#    extends:
+#      service: app
+#      file: proxy/docker-compose.yml
+#    networks:
+#      - mylocal
+
+  nginx:
+    image: mirror.gcr.io/nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - geo
+      - user
+      - auth
 
 
 volumes:
